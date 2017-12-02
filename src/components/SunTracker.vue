@@ -127,7 +127,7 @@ h1 {
 }
 @media screen and (min-width:481px) and (max-width: 768px) {
 input[type=text] {
-  width:50%
+  width:60%
   }
 h1 {
   font-size:18px;
