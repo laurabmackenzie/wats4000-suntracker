@@ -3,7 +3,7 @@
     <p class="links"><router-link v-bind:to="{name:'SunTracker'}">Return to SunTracker</router-link></p>
     <div class=video>
     <h1>Winter Solstice<br>Fairbanks, Alaska</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Olbo4Am4U44?rel=0&amp;controls=0&amp;showinfo=0&amp;start=7" frameborder="0" allowfullscreen></iframe> 
+    <iframe width="420" height="236" src="https://www.youtube.com/embed/Olbo4Am4U44?rel=0&amp;controls=0&amp;showinfo=0&amp;start=7" frameborder="0" allowfullscreen></iframe> 
     <p>December 21, 2012<br>Sunrise: 11:06 AM<br>Sunset: 2:59 PM<br><br>Time lapse video created by Taro Nakai</p>
 </div>
 </div>
