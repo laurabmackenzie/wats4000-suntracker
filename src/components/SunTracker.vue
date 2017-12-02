@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="form-container">
-      <img class="header" src="src/assets/sunrisesunsetsm.jpg">
+      <img class="header" src="../assets/sunrisesunsetsm.jpg">
       <h1>For Today's Sunrise and Sunset Times,<br>Enter Address Below</h1>
       <p class="error" v-show="showError">That is not a valid address. Try again</p>
       <form v-on:submit.prevent="findTimes">
