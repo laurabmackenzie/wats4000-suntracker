@@ -23,7 +23,7 @@
     <div class="no-results" v-if="results==0">
       <h2>No Sunrise and Sunset Times Found</h2>
     </div>
-    <router-link v-bind:to="{name:'FeaturedVideos'}">Featured Videos</router-link>
+    <router-link v-bind:to="{name:'FeaturedVideo'}">Featured Video</router-link>
   </div>
 </template>
 

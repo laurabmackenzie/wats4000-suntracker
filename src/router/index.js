@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import SunTracker from '@/components/SunTracker'
-import FeaturedVideos from '@/components/FeaturedVideos'
+import FeaturedVideo from '@/components/FeaturedVideo'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: SunTracker
     },
     {
-      path:'/FeaturedVideos',
-      name: 'FeaturedVideos',
-      component: FeaturedVideos
+      path:'/FeaturedVideo',
+      name: 'FeaturedVideo',
+      component: FeaturedVideo
     }
   ]
 })
