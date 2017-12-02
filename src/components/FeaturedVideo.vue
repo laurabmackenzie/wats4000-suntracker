@@ -13,6 +13,9 @@
 .videocontainer iframe {
     max-width: 100%;
 }
+h1 {
+  font-weight:normal;
+}
 @media screen and (max-width:320px) {
   h1 {
     font-size: 20px;
