@@ -105,7 +105,7 @@ input[type=text] {
 }
 @media screen and (max-width:320px) {
   input[type=text] {
-    width:80%
+    width:90%
   }
   h1 {
     font-size: 14px;
@@ -116,7 +116,7 @@ input[type=text] {
 }
 @media screen and (min-width:321px) and (max-width:480px) {
 input[type=text] {
-    width:70%
+    width:80%
   }
 h1 {
   font-size:16px;
@@ -146,7 +146,7 @@ h1 {
 }
 @media screen and (min-width:1025px) {
 input[type=text] {
-    width:20%
+    width:30%
   }
 }
 input[placeholder] {
