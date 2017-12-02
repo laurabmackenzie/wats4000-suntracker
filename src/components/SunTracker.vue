@@ -2,23 +2,25 @@
   <div class="home">
     <div class="form-container">
       <img class="header" src="../assets/sunrisesunsetsm.jpg">
-      <h1>For Today's Sunrise and Sunset Times,<br>Enter Address Below</h1>
+      <h1 v-show="showInstructions">For Today's Sunrise and Sunset Times,<br>Enter Address Below</h1>
       <p class="error" v-show="showError">That is not a valid address. Try again</p>
       <form v-on:submit.prevent="findTimes">
         <p><input type="text" v-model.lazy="address" placeholder="Enter Address, City, and or Zipcode"></p>
         <p><button class="search" type="submit">Search</button></p>
       </form>
-      <div v-if="location">
-      <p>Sunrise and Sunset times for : {{address}}</p> 
+      <transition name="fade">
+      <div v-if="results">
+      <p>Sunrise and Sunset times for: {{address}}</p> 
       <ul>     
       <li>Latitude: {{location.lat}} </li> 
       <li>Longitude: {{location.lng}}</li> 
       </ul>
-      <ul v-if="results">
+      <ul>
       <li>Sunrise: {{results.sunrise}} </li> 
       <li>Sunset: {{results.sunset}}</li>
       </ul>
-     </div> 
+      </div> 
+      </transition>
     </div>
     <div class="no-results" v-if="results==0">
       <h2>No Sunrise and Sunset Times Found</h2>
@@ -29,6 +31,7 @@
 
 <script>
 import axios from 'axios';
+require('vue2-animate/dist/vue2-animate.min.css');
 export default {
   name: 'SunTracker',
   data () {
@@ -38,10 +41,13 @@ export default {
       showError:false,
       address:'',
       errors:[],
+      showInstructions:true
     }
   },
   methods: {
     findTimes: function() {
+      this.results=null;
+      this.showInstructions=false;
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           key:"AIzaSyAK2ohlSv-ijKMYsYRnT_TR0FeKb1WzeUI",
@@ -80,6 +86,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
 h1, h2 {
   font-weight: normal;
 }
@@ -88,7 +100,6 @@ h1, h2 {
 }
 input[type=text] {
     padding: 1%;
-    margin: 8px 0;
     box-sizing: border-box;
     color:black;
 }
@@ -151,9 +162,6 @@ li {
 }
 a {
   color: #42b983;
-}
-.search {
-  margin-bottom:5px;
 }
 
 </style>
