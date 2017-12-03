@@ -26,7 +26,7 @@
     <ul class="errors" v-if="errors.length>0">
       <!--loops through the errors. -->
       <li v-for="error in errors">
-        {{error.message}}
+        <p>Invalid Address. Try Again.</p>
       </li>
     </ul>
     <div class="no-results" v-if="results==0">
@@ -56,6 +56,7 @@ export default {
       //getting latitude and longitude required for sunrise sunset API
       this.results=null;
       this.showInstructions=false;
+      this.errors=[];
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           key:"AIzaSyAK2ohlSv-ijKMYsYRnT_TR0FeKb1WzeUI",
@@ -65,6 +66,7 @@ export default {
     .then(response=> {
       //calling sunrise sunset API
       this.location = response.data.results[0].geometry.location;
+      this.showError=false;
       axios.get('https://api.sunrise-sunset.org/json', {
         params: {
           lat:this.location.lat,
@@ -88,6 +90,7 @@ export default {
         })
     .catch(error=>{
       this.errors.push(error);
+      showError:true;
     });
   }
 }
