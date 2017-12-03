@@ -2,12 +2,13 @@
   <div class="home">
     <div class="form-container">
       <img class="header" src="../assets/sunrisesunsetsm.jpg">
-      <h1 v-show="showInstructions">For Today's Sunrise and Sunset Times,<br>Enter Address Below</h1>
-      <p class="error" v-show="showError">That is not a valid address. Try again</p>
+      <!--instructions are hidden after first search to prevent user from having to scroll-->
+      <h1 v-show="showInstructions">For Today's Sunrise and Sunset Times,<br>Enter Address Below</h1>     
       <form v-on:submit.prevent="findTimes">
         <p><input type="text" v-model.lazy="address" placeholder="Enter Address, City, and or Zipcode"></p>
         <p><button class="search" type="submit">Search</button></p>
       </form>
+      <!--animation used to draw user's attention to changing data-->
       <transition name="fade">
       <div v-if="results">
       <p>Sunrise and Sunset times for: {{address}}</p> 
@@ -22,6 +23,12 @@
       </div> 
       </transition>
     </div>
+    <ul class="errors" v-if="errors.length>0">
+      <!--loops through the errors. -->
+      <li v-for="error in errors">
+        {{error.message}}
+      </li>
+    </ul>
     <div class="no-results" v-if="results==0">
       <h2>No Sunrise and Sunset Times Found</h2>
     </div>
@@ -46,6 +53,7 @@ export default {
   },
   methods: {
     findTimes: function() {
+      //getting latitude and longitude required for sunrise sunset API
       this.results=null;
       this.showInstructions=false;
       axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -55,6 +63,7 @@ export default {
         }
       })
     .then(response=> {
+      //calling sunrise sunset API
       this.location = response.data.results[0].geometry.location;
       axios.get('https://api.sunrise-sunset.org/json', {
         params: {
@@ -64,6 +73,7 @@ export default {
         }
       })
         .then(response=> {
+          //formatting times for readability
           this.results = response.data.results;
           var formattedSunrise = new Date(this.results.sunrise);
           this.results.sunrise = formattedSunrise.toTimeString();
